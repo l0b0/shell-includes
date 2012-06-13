@@ -6,7 +6,7 @@
 #        warning MESSAGE...
 #
 # DESCRIPTION
-#        Prints a message to standard error, with color if on an interactive
+#        Prints messages to standard error, with color if on an interactive
 #        terminal.
 #
 # BUGS
