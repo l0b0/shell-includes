@@ -6,7 +6,7 @@
 #        error MESSAGE [EXIT_CODE]
 #
 # DESCRIPTION
-#        Prints a message to standard error, then exits the sourcing script with
+#        Prints messages to standard error, then exits the sourcing script with
 #        the given exit code (default 1).
 #
 # BUGS
@@ -30,7 +30,24 @@
 #
 ################################################################################
 
+. "`dirname -- "$0"`"/warning.sh
+
 error() {
-    echo "`basename -- "$0"`: $1" >&2
-    exit ${2-1}
+    messages=( "$@" )
+
+    # If the last parameter is a number, it's not part of the messages
+    last_parameter="${messages[@]: -1}"
+    case "$last_parameter" in
+        ''|*[!0-9]*)
+            ;;
+        *)
+            exit_code=$last_parameter
+            unset messages[$((${#messages[@]} - 1))]
+            ;;
+    esac
+
+    echo -n "`basename -- "$0"`: " >&2
+    warning "${messages[@]}"
+
+    exit ${exit_code-1}
 }
