@@ -29,10 +29,8 @@
 
 set -o errexit -o noclobber -o nounset -o pipefail
 
-cd -- "$(dirname -- "$0")"
-
-for file in test-*.sh
+for path in "$(dirname -- "$0")"/test-*.sh
 do
-    echo "$file"
-    ./"$file"
+    echo "$path"
+    "$path"
 done
