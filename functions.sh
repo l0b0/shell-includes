@@ -29,9 +29,6 @@
 # http://www.faqs.org/docs/abs/HTML/exitcodes.html
 EX_USAGE=64       # command line usage error
 
-# Custom errors
-EX_UNKNOWN=1
-
 cmdname="$(basename -- "$0")"
 
 help_info="Try \`$cmdname --help\` for more information."
@@ -47,26 +44,6 @@ warning() {
 
     test -t 1 && tput sgr0 # Reset terminal
     true
-}
-
-error() {
-    # Output error messages with optional exit code
-    # @param $1...: Messages
-    # @param $N: Exit code (optional)
-
-    messages=( "$@" )
-
-    # If the last parameter is a number, it's not part of the messages
-    last_parameter="${messages[@]: -1}"
-    if [[ "$last_parameter" =~ ^[0-9]*$ ]]
-    then
-        exit_code=$last_parameter
-        unset messages[$((${#messages[@]} - 1))]
-    fi
-
-    warning "${messages[@]}"
-
-    exit ${exit_code:-$EX_UNKNOWN}
 }
 
 verbose_echo() {
