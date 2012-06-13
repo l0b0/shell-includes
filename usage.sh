@@ -13,7 +13,7 @@
 #
 #        Skips the shebang line if there is one.
 #
-#        Returns from the sourcing file with the given exit code (or 0).
+#        Returns from the sourcing file with the given exit code (default 0).
 #
 # BUGS
 #        https://github.com/l0b0/shell-includes/issues
