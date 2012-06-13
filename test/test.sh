@@ -36,5 +36,3 @@ do
     echo "$file"
     ./"$file"
 done
-
-cd - >/dev/null
