@@ -36,7 +36,7 @@ warning() {
         tput setf 4
     fi
 
-    echo "`basename -- "$0"`:" "$@" >&2
+    echo "$@" >&2
 
     if [ -t 1 ]
     then
