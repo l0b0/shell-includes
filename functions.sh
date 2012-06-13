@@ -69,23 +69,6 @@ error() {
     exit ${exit_code:-$EX_UNKNOWN}
 }
 
-usage() {
-    # Print documentation until the first empty line
-    # @param $1: Exit code (optional)
-    while IFS= read line
-    do
-        if [ -z "$line" ]
-        then
-            exit ${1:-0}
-        elif [ "${line:0:2}" == '#!' ]
-        then
-            # Shebang line
-            continue
-        fi
-        echo "${line:2}" # Remove comment characters
-    done < "$0"
-}
-
 verbose_echo() {
     # @param $1: Optionally '-n' for echo to output without newline
     # @param $(1|2)...: Messages
