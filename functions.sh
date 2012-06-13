@@ -25,14 +25,6 @@
 #
 ################################################################################
 
-# Exit codes from /usr/include/sysexits.h, as recommended by
-# http://www.faqs.org/docs/abs/HTML/exitcodes.html
-EX_USAGE=64       # command line usage error
-
-cmdname="$(basename -- "$0")"
-
-help_info="Try \`$cmdname --help\` for more information."
-
 warning() {
     # Output warning messages
     # Color the output red if it's an interactive terminal
