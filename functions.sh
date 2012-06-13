@@ -25,19 +25,6 @@
 #
 ################################################################################
 
-warning() {
-    # Output warning messages
-    # Color the output red if it's an interactive terminal
-    # @param $1...: Messages
-
-    test -t 1 && tput setf 4
-
-    printf '%s\n' "$@" >&2
-
-    test -t 1 && tput sgr0 # Reset terminal
-    true
-}
-
 verbose_echo() {
     # @param $1: Optionally '-n' for echo to output without newline
     # @param $(1|2)...: Messages
