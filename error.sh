@@ -30,8 +30,6 @@
 #
 ################################################################################
 
-. "`dirname -- "$0"`"/warning.sh
-
 error() {
     messages=( "$@" )
 
@@ -47,7 +45,18 @@ error() {
     esac
 
     echo -n "`basename -- "$0"`: " >&2
-    warning "${messages[@]}"
+
+    if [ -t 1 ]
+    then
+        tput setf 4
+    fi
+
+    echo "${messages[@]}" >&2
+
+    if [ -t 1 ]
+    then
+       tput sgr0 # Reset formatting
+    fi
 
     exit ${exit_code-1}
 }
