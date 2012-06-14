@@ -6,8 +6,9 @@
 #        error MESSAGE [EXIT_CODE]
 #
 # DESCRIPTION
-#        Prints messages to standard error, then exits the sourcing script with
-#        the given exit code (default 1).
+#        Prints messages to standard error, with color if on an interactive
+#        terminal, then exits the sourcing script with the given exit code
+#        (default 1).
 #
 # BUGS
 #        https://github.com/l0b0/shell-includes/issues
