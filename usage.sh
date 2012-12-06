@@ -37,7 +37,7 @@
 ################################################################################
 
 usage() {
-    while IFS= read line
+    while IFS= read -r line || [ -n "$line" ]
     do
         if [ "x${line:0:1}" != 'x#' -o "x${line:0:2}" = 'x##' ]
         then
