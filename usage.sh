@@ -19,7 +19,7 @@
 #        https://github.com/l0b0/shell-includes/issues
 #
 # COPYRIGHT AND LICENSE
-#        Copyright (C) 2010-2012 Victor Engmark
+#        Copyright (C) 2010-2013 Victor Engmark
 #
 #        This program is free software: you can redistribute it and/or modify it
 #        under the terms of the GNU General Public License as published by the
@@ -42,7 +42,7 @@ usage() {
         if [ "x${line:0:1}" != 'x#' -o "x${line:0:2}" = 'x##' ]
         then
             # End of comments
-            exit ${1-0}
+            exit ${1:-0}
         elif [ "${line:0:2}" = '#!' ]
         then
             # Shebang line
