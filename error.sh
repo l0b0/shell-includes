@@ -14,7 +14,7 @@
 #        https://github.com/l0b0/shell-includes/issues
 #
 # COPYRIGHT AND LICENSE
-#        Copyright (C) 2010-2012 Victor Engmark
+#        Copyright (C) 2010-2013 Victor Engmark
 #
 #        This program is free software: you can redistribute it and/or modify it
 #        under the terms of the GNU General Public License as published by the
@@ -32,19 +32,6 @@
 ################################################################################
 
 error() {
-    messages=( "$@" )
-
-    # If the last parameter is a number, it's not part of the messages
-    last_parameter="${messages[@]: -1}"
-    case "$last_parameter" in
-        ''|*[!0-9]*)
-            ;;
-        *)
-            exit_code=$last_parameter
-            unset messages[$((${#messages[@]} - 1))]
-            ;;
-    esac
-
     echo -n "`basename -- "$0"`: " >&2
 
     if [ -t 1 ]
@@ -52,12 +39,31 @@ error() {
         tput setf 4
     fi
 
-    echo "${messages[@]}" >&2
+    # If the last parameter is a number, it's not part of the messages
+    exit_code=1
+    while true
+    do
+        if [ $# -eq 0 ]
+        then
+            break
+        fi
+        if [ $# -eq 1 ]
+        then
+            case "$1" in
+                ''|*[!0-9]*)
+                    ;;
+                *)
+                    exit_code="$1"
+            esac
+        fi
+        echo "$1" >&2
+        shift
+    done
 
     if [ -t 1 ]
     then
        tput sgr0 # Reset formatting
     fi
 
-    exit ${exit_code-1}
+    exit "$exit_code"
 }
