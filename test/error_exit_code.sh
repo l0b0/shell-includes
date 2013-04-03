@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 . "$(dirname -- "$0")"/../error.sh
-error 'message' 2
+error 'message' 255

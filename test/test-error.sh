@@ -10,7 +10,7 @@
 #        https://github.com/l0b0/shell-includes/issues
 #
 # COPYRIGHT AND LICENSE
-#        Copyright (C) 2012 Victor Engmark
+#        Copyright (C) 2012-2013 Victor Engmark
 #
 #        This program is free software: you can redistribute it and/or modify it
 #        under the terms of the GNU General Public License as published by the
@@ -42,7 +42,14 @@ test_message() {
 
 test_exit_code() {
     "$directory"/error_exit_code.sh > "$stdout" 2> "$stderr"
-    assertEquals 'Wrong exit code' 2 $?
+    assertEquals 'Wrong exit code' 255 $?
+    assertFalse "Output on standard output: $(cat "$stdout")" '[ -s "$stdout" ]'
+    assertTrue 'No output on standard error' '[ -s "$stderr" ]'
+}
+
+test_ifs_exit_code() {
+    IFS=5 "$directory"/error_exit_code.sh > "$stdout" 2> "$stderr"
+    assertEquals 'Wrong exit code' 255 $?
     assertFalse "Output on standard output: $(cat "$stdout")" '[ -s "$stdout" ]'
     assertTrue 'No output on standard error' '[ -s "$stderr" ]'
 }
