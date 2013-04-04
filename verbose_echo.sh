@@ -1,5 +1,5 @@
 # NAME
-#        verbose_echo.sh - Function to print a message only in verbose mode
+#        verbose_echo.sh - Function to print messages only in verbose mode
 #
 # SYNOPSIS
 #        . verbose_echo.sh
