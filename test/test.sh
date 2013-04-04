@@ -31,6 +31,6 @@ set -o errexit -o noclobber -o nounset -o pipefail
 
 for path in "$(dirname -- "$0")"/test-*.sh
 do
-    echo "$path"
+    printf '%s\n' "$path"
     "$path"
 done

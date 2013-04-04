@@ -1,19 +1,20 @@
 # NAME
-#        warning.sh - Function to print a warning message
+#        verbose_print.sh - Function to print messages in verbose mode
 #
 # SYNOPSIS
-#        . warning.sh
-#        warning MESSAGE...
+#        . verbose_print.sh
+#        verbose_print MESSAGE...
 #
 # DESCRIPTION
-#        Prints messages to standard error, with color if on an interactive
-#        terminal.
+#        Prints messages to standard output if $verbose is set. Messages are
+#        not separated by any characters. To print newline-separated messages,
+#        see verbose_print_line.sh.
 #
 # BUGS
 #        https://github.com/l0b0/shell-includes/issues
 #
 # COPYRIGHT AND LICENSE
-#        Copyright (C) 2010-2013 Victor Engmark
+#        Copyright (C) 2013 Victor Engmark
 #
 #        This program is free software: you can redistribute it and/or modify it
 #        under the terms of the GNU General Public License as published by the
@@ -30,16 +31,9 @@
 #
 ################################################################################
 
-warning() {
-    if [ -t 1 ]
+verbose_print() {
+    if [ -n "${verbose+defined}" ]
     then
-        tput setf 4
-    fi
-
-    printf '%s\n' "$@" >&2
-
-    if [ -t 1 ]
-    then
-       tput sgr0 # Reset formatting
+        printf '%s' "$@"
     fi
 }

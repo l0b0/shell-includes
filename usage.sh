@@ -48,6 +48,6 @@ usage() {
             # Shebang line
             continue
         fi
-        echo "${line:2}" >&2 # Remove comment prefix
+        printf '%s\n' "${line:2}" >&2 # Remove comment prefix
     done < "$0"
 }

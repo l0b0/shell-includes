@@ -32,7 +32,7 @@
 ################################################################################
 
 error() {
-    echo -n "`basename -- "$0"`: " >&2
+    printf '%s' "`basename -- "$0"`: " >&2
 
     if [ -t 1 ]
     then
@@ -56,7 +56,7 @@ error() {
                     exit_code="$1"
             esac
         fi
-        echo "$1" >&2
+        printf '%s\n' "$1" >&2
         shift
     done
 

@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 #
 # NAME
-#        test-verbose_echo.sh - Test script for verbose_echo function
+#        test-verbose_print.sh - Test script for verbose_print function
 #
 # SYNOPSIS
-#        ./test-verbose_echo.sh
+#        ./test-verbose_print.sh
 #
 # BUGS
 #        https://github.com/l0b0/shell-includes/issues
 #
 # COPYRIGHT AND LICENSE
-#        Copyright (C) 2012 Victor Engmark
+#        Copyright (C) 2012-2013 Victor Engmark
 #
 #        This program is free software: you can redistribute it and/or modify it
 #        under the terms of the GNU General Public License as published by the
@@ -34,17 +34,18 @@ oneTimeSetUp() {
 }
 
 test_no_verbose() {
-    "$directory"/no_verbose.sh > "$stdout" 2> "$stderr"
+    "$directory"/no_verbose_print.sh > "$stdout" 2> "$stderr"
     assertEquals 'Wrong exit code' 0 $?
     assertFalse "Output on standard output: $(cat "$stdout")" '[ -s "$stdout" ]'
     assertFalse "Output on standard error: $(cat "$stderr")" '[ -s "$stderr" ]'
 }
 
 test_verbose() {
-    "$directory"/verbose.sh > "$stdout" 2> "$stderr"
+    "$directory"/verbose_print.sh > "$stdout" 2> "$stderr"
     assertEquals 'Wrong exit code' 0 $?
     assertTrue 'No output on standard output' '[ -s "$stdout" ]'
     assertFalse "Output on standard error: $(cat "$stderr")" '[ -s "$stderr" ]'
+    assertEquals 'Wrong output' 'messagex' "$(cat "$stdout"; printf x)"
 }
 
 # load and run shUnit2

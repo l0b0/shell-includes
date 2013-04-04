@@ -1,19 +1,20 @@
 # NAME
-#        verbose_echo.sh - Function to print messages only in verbose mode
+#        verbose_print_line.sh - Function to print line messages in verbose mode
 #
 # SYNOPSIS
-#        . verbose_echo.sh
-#        verbose_echo [OPTION...] MESSAGE...
+#        . verbose_print_line.sh
+#        verbose_print_line MESSAGE...
 #
 # DESCRIPTION
-#        Prints messages to standard output if $verbose is set. Options are
-#        forwarded to `echo`.
+#        Prints messages, separated by newline, to standard output if $verbose
+#        is set. Messages are separated by newline. To print messages without a
+#        separator, see verbose_print.sh.
 #
 # BUGS
 #        https://github.com/l0b0/shell-includes/issues
 #
 # COPYRIGHT AND LICENSE
-#        Copyright (C) 2010-2012 Victor Engmark
+#        Copyright (C) 2013 Victor Engmark
 #
 #        This program is free software: you can redistribute it and/or modify it
 #        under the terms of the GNU General Public License as published by the
@@ -30,9 +31,9 @@
 #
 ################################################################################
 
-verbose_echo() {
+verbose_print_line() {
     if [ -n "${verbose+defined}" ]
     then
-        echo "$@"
+        printf '%s\n' "$@"
     fi
 }
