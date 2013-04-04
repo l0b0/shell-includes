@@ -32,5 +32,8 @@ set -o errexit -o noclobber -o nounset
 for path in "$(dirname -- "$0")"/test-*.sh
 do
     printf '%s\n' "$path"
-    "$path"
+    set +o errexit
+    "$path" || exit_code=$?
+    set -o errexit
 done
+exit "${exit_code-0}"
