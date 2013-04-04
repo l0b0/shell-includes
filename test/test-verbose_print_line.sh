@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # NAME
 #        test-verbose_print_line.sh - Test script for verbose_print_line
@@ -27,7 +27,7 @@
 #        with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ################################################################################
-declare -r directory="$(dirname -- "$0")"
+directory="$(dirname -- "$0")"
 
 oneTimeSetUp() {
     stdout="$__shunit_tmpDir"/stdout
@@ -46,7 +46,7 @@ test_verbose() {
     assertEquals 'Wrong exit code' 0 $?
     assertTrue 'No output on standard output' '[ -s "$stdout" ]'
     assertFalse "Output on standard error: $(cat "$stderr")" '[ -s "$stderr" ]'
-    assertEquals 'Wrong output' $'message\nx' "$(cat "$stdout"; printf x)"
+    assertEquals 'Wrong output' "$(printf 'message\nx')" "$(cat "$stdout"; printf 'x')"
 }
 
 # load and run shUnit2

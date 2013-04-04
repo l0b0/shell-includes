@@ -1,3 +1,4 @@
+#!/bin/sh
 # NAME
 #        verbose_print_line.sh - Function to print line messages in verbose mode
 #

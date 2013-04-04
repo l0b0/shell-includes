@@ -1,3 +1,4 @@
-#!/usr/bin/env bash
-. "$(dirname -- "$0")"/../verbose_print.sh
+#!/bin/sh
+directory="$(dirname -- "$0")"
+. "$directory"/../verbose_print.sh
 verbose_print 'message'

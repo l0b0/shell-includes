@@ -1,3 +1,4 @@
+#!/bin/sh
 # NAME
 #        variables.sh - Commonly used variables
 #

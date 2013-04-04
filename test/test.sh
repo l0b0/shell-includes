@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # NAME
 #        test.sh - Test shell scripts
@@ -27,7 +27,7 @@
 #
 ################################################################################
 
-set -o errexit -o noclobber -o nounset -o pipefail
+set -o errexit -o noclobber -o nounset
 
 for path in "$(dirname -- "$0")"/test-*.sh
 do

@@ -1,3 +1,4 @@
+#!/bin/sh
 # NAME
 #        usage.sh - Function to print documentation like this one
 #
@@ -39,15 +40,15 @@
 usage() {
     while IFS= read -r line || [ -n "$line" ]
     do
-        if [ "x${line:0:1}" != 'x#' -o "x${line:0:2}" = 'x##' ]
-        then
-            # End of comments
-            exit ${1:-0}
-        elif [ "${line:0:2}" = '#!' ]
-        then
-            # Shebang line
-            continue
-        fi
-        printf '%s\n' "${line:2}" >&2 # Remove comment prefix
+        case "$line" in
+            '#!'*) # Shebang line
+                ;;
+            ''|'##'*|[!#]*) # End of comments
+                exit "${1:-0}"
+                ;;
+            *) # Comment line
+                printf '%s\n' "$line" >&2 # Remove comment prefix
+                ;;
+        esac
     done < "$0"
 }

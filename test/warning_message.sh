@@ -1,3 +1,4 @@
-#!/usr/bin/env bash
-. "$(dirname -- "$0")"/../warning.sh
+#!/bin/sh
+directory="$(dirname -- "$0")"
+. "$directory"/../warning.sh
 warning 'message'

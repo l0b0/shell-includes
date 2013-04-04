@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # NAME
 #        test-error.sh - Test script for error function
@@ -26,7 +26,7 @@
 #        with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ################################################################################
-declare -r directory="$(dirname -- "$0")"
+directory="$(dirname -- "$0")"
 
 oneTimeSetUp() {
     stdout="$__shunit_tmpDir"/stdout

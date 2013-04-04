@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # NAME
 #        usage_exit_nonzero.sh - Dummy script emulating typical invalid
@@ -27,5 +27,6 @@
 #        with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ################################################################################
-. "$(dirname -- "$0")"/../usage.sh
+directory="$(dirname -- "$0")"
+. "$directory"/../usage.sh
 usage 2

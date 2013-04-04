@@ -1,3 +1,4 @@
+#!/bin/sh
 # NAME
 #        warning.sh - Function to print a warning message
 #

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # NAME
 #        usage_exit_zero.sh - Dummy script emulating typical --help behavior
@@ -26,5 +26,6 @@
 #        with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ################################################################################
-. "$(dirname -- "$0")"/../usage.sh
+directory="$(dirname -- "$0")"
+. "$directory"/../usage.sh
 usage 0

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # NAME
 #        documentation_then_empty_line.sh - Dummy script with documentation
@@ -28,5 +28,6 @@
 #
 ################################################################################
 
-. "$(dirname -- "$0")"/../usage.sh
+directory="$(dirname -- "$0")"
+. "$directory"/../usage.sh
 usage

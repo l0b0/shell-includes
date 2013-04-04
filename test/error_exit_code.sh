@@ -1,3 +1,4 @@
-#!/usr/bin/env bash
-. "$(dirname -- "$0")"/../error.sh
+#!/bin/sh
+directory="$(dirname -- "$0")"
+. "$directory"/../error.sh
 error 'message' 255

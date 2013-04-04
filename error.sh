@@ -1,3 +1,4 @@
+#!/bin/sh
 # NAME
 #        error.sh - Function to print an error message and exit
 #

@@ -1,3 +1,4 @@
-#!/usr/bin/env bash
-. "$(dirname -- "$0")"/../usage.sh
+#!/bin/sh
+directory="$(dirname -- "$0")"
+. "$directory"/../usage.sh
 usage
