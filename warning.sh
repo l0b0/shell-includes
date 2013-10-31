@@ -34,7 +34,7 @@
 warning() {
     if [ -t 1 ]
     then
-        tput setf 4
+        tput setf 4 || tput setaf 1
     fi
 
     printf '%s\n' "$@" >&2

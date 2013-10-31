@@ -37,7 +37,7 @@ error() {
 
     if [ -t 1 ]
     then
-        tput setf 4
+        tput setf 4 || tput setaf 1
     fi
 
     # If the last parameter is a number, it's not part of the messages
