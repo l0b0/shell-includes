@@ -70,4 +70,13 @@ test_nonzero_exit_code() {
 
 # load and run shUnit2
 test -n "${ZSH_VERSION:-}" && SHUNIT_PARENT=$0
-. /usr/share/shunit2/shunit2
+for shunit2_path in /usr/bin/shunit2 /usr/share/shunit2/shunit2
+do
+    if [ -e "$shunit2_path" ]
+    then
+        . "$shunit2_path"
+        exit
+    fi
+done
+echo "$(basename -- "$0"): No shunit2 executable found" >&2
+exit 1
