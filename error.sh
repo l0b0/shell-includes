@@ -55,6 +55,8 @@ error() {
                     ;;
                 *)
                     exit_code="$1"
+                    shift
+                    continue
             esac
         fi
         printf '%s\n' "$1" >&2
