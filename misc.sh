@@ -145,6 +145,11 @@ longest() {
 
 longer() {
     # Print any lines in $2... which are more characters than $1.
+    #
+    # Example:
+    #
+    # $ longer 80 foo.txt
+    #   Print lines in foo.txt which are more than 80 characters long
     if [[ $# -lt 2 ]]
     then
         echo 'Synopsis: longer NUMBER FILE...' >&2
@@ -310,6 +315,7 @@ empty_line_before_eof() {
     # @param $1...: Sed options and/or input files
     #
     # Example:
+    #
     # $ empty_line_before_eof -i .bak ./*
     #   Save backups to filename.bak, and process each file
     #
@@ -372,11 +378,11 @@ completions() {
     # Print autocompletions
     # Examples:
     #
-    #   List all user-related Git configuration settings:
-    #     completions git config '' | grep user
-    #
+    # $ completions
     #   List all available commands:
-    #     completions
+    #
+    # $ completions git config '' | grep user
+    #   List all user-related Git configuration settings:
     if [[ $# -eq 0 ]]
     then
         set -- ''
@@ -404,6 +410,14 @@ dpkg-quilt() {
 fullname() {
     # The fifth field contains the name
     # The first subfield contains the full name
+    #
+    # Examples:
+    #
+    # $ fullname
+    #   Print the current user's full name
+    #
+    # $ fullname username
+    #   Print user "username"'s full name
     getent passwd -- "${@-$USER}" | cut -d ':' -f 5 | cut -d ',' -f 1
 }
 
@@ -496,9 +510,10 @@ log_time_diff() {
     # Prepends syslog log lines with the difference between the current line
     # and the previous one in seconds
     #
-    # Example:
+    # Examples:
     #
     # $ log_time_diff < /var/log/syslog
+    #
     # $ log_time_diff < /var/log/syslog | sort --numeric --key=1
     local prev line month day time rest
     while read -r line
@@ -517,6 +532,10 @@ log_time_diff() {
 }
 
 escaped_declare() {
+    # Print shell-escaped variable declarations
+    #
+    # This makes it possible to copy-paste the declarations verbatim and get
+    # the same values.
     (
         eval '
             declare() {
@@ -536,7 +555,10 @@ date_range() {
     # Examples:
     #
     # $ date_range 2000-01-01 2000-12-31
+    #   Print all the dates in year 2000
+    #
     # $ date_range 'last Monday'
+    #   Print the dates from last Monday to today, inclusive
     start="$(date --rfc-3339=date --date="${1-today}")"
     end="$(date --rfc-3339=date --date="${2-today}")"
     while [[ "$start" < "$end" || "$start" = "$end" ]]
@@ -555,7 +577,8 @@ insert_after_last() {
     #
     # Example:
     #
-    # insert_after_last '^[ \t]*[^# \t]' '# My comment' /path
+    # $ insert_after_last '^[ \t]*[^# \t]' '# My comment' /path
+    #   Insert the line '# My comment' after the last comment
 
     if [[ $# -lt 3 ]]
     then
